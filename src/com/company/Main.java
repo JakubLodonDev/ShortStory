@@ -9,11 +9,9 @@ public class Main {
         int level = 0;
         var levelCompleted = gameplay.Game(); //gameplay.Game(level);
 
-        while (levelCompleted){
-            level++;
-            //zapytac o kotynuacje
-            // czy pokazac informacje
+        //while (levelCompleted){
+        //    level++;
            // levelCompleted = gameplay.Game(level);
-        }
+        //}
     }
 }
