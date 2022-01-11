@@ -6,13 +6,14 @@ import java.util.Random;
 public class Gameplay {
     private final int baseNumberOfEnemies = 2;
     RandomEnemyGetter randomEnemyGetter;
+
     public Gameplay() {
         randomEnemyGetter= new RandomEnemyGetter();
     }
 
-    boolean Game() {
+    boolean Game(Hero hero) {
         boolean levelResult = true;
-        Hero hero = new Hero("Archer",0,150,30,15);
+        //Hero hero = new Hero("Archer",0,150,30,15);
 
         int numberOfEnemys = GetNumberOfEnemies(hero);
 
@@ -24,8 +25,8 @@ public class Gameplay {
 
         if(fightsresult) {
             System.out.printf("Win");
+            hero.HealToMaxHealth();
         }
-
 
         return levelResult;
 
