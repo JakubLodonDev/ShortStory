@@ -5,26 +5,19 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class RandomEnemyGetter{
-    ArrayList<EnemyInfo> enemyInfo;
+    ArrayList<EnemyInfo> enemyInfoList;
 
     public RandomEnemyGetter() {
-        this.enemyInfo = new ArrayList<EnemyInfo>();
-        enemyInfo.add( new EnemyInfo("Goblin", 0));
-        enemyInfo.add( new EnemyInfo("Skeleton", 0));
-        enemyInfo.add( new EnemyInfo("Bird", 1));
+        this.enemyInfoList = new ArrayList<EnemyInfo>();
+        enemyInfoList.add( new EnemyInfo("Goblin", 0));
+        enemyInfoList.add( new EnemyInfo("Skeleton", 0));
+        enemyInfoList.add( new EnemyInfo("Bird", 1));
     }
 
     public ArrayList<Enemy> Get(int level, int numberOfEnemies){
         ArrayList<Enemy> enemies = new ArrayList<>();
-        ArrayList<EnemyInfo> listOfEnemiesOnTheLevel = new ArrayList<>(); //Where (x=> x.Level <= level)
-        int j = 0;
-        //listOfEnemiesOnTheLevel.stream().filter(e-> level >= e.level).forEach(listOfEnemiesOnTheLevel.add());
-        for (EnemyInfo e : enemyInfo) {
-            if (level >= enemyInfo.get(j).level) {
-                listOfEnemiesOnTheLevel.add(enemyInfo.get(j));
-            }
-            j++;
-        }
+        var listOfEnemiesOnTheLevel = enemyInfoList.stream()
+                .filter(enemyInfo -> enemyInfo.Level <= level).collect(Collectors.toList());
 
         Random rand = new Random();
         for(int i = 0; i<numberOfEnemies; i++) {

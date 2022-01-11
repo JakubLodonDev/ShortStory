@@ -1,5 +1,10 @@
 package com.company;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Enemy {
     String Name;
     int Level;
@@ -14,29 +19,4 @@ public class Enemy {
         Damage = damage;
         Dodge = dodge;
     }
-
-    public String getName() {
-        return Name;
-    }
-
-    public int getLevel() {
-        return Level;
-    }
-
-    public int getHealth() {
-        return Health;
-    }
-
-    public void setHealth(int health) {
-        Health = health;
-    }
-
-    public int getDamage() {
-        return Damage;
-    }
-
-    public int getDodge() {
-        return Dodge;
-    }
-
 }
