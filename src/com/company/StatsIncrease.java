@@ -1,6 +1,6 @@
 package com.company;
 
-import java.util.Scanner;
+import com.company.Hero.Hero;
 
 public class StatsIncrease {
     private final int baseIncreaseHp = 15;
@@ -11,7 +11,7 @@ public class StatsIncrease {
     }
 
     public boolean StatsUp(Hero hero, String increaseOneStat){
-                switch (increaseOneStat.toLowerCase()) {
+        switch (increaseOneStat.toLowerCase()) {
             case "hp":
                 ImprovementMaxHp(hero);
                 return true;
@@ -26,12 +26,10 @@ public class StatsIncrease {
     }
 
     void ImprovementMaxHp(Hero hero) {
-        hero.setHealth(hero.getHealth()+baseIncreaseHp);
+        hero.IncreaseMaxHealth(baseIncreaseHp);
     }
     void ImprovementMaxDmg(Hero hero) {
-        hero.setDamage(hero.getDamage()+baseIncreaseDmg);
+        hero.IncreaseDamage(baseIncreaseDmg);
     }
-    void ImprovementMaxDodge(Hero hero) {
-        hero.setDodge(hero.getDodge()+baseIncreaseDodge);
-    }
+    void ImprovementMaxDodge(Hero hero) { hero.IncreaseDodge(baseIncreaseDodge);    }
 }

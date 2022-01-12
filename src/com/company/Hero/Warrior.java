@@ -1,11 +1,12 @@
-package com.company;
+package com.company.Hero;
 
 public class Warrior extends Hero {
     public Warrior() {
-        Name ="Warrior";
+        super("Warrior", 0, 300, 20, 0);
+        Name ="";
         Level=0;
         Health=300;
         Damage=20;
-        Dodge=0;
+        ChanceToDodge =0;
     }
 }

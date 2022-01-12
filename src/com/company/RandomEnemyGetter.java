@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.Enemy.Enemy;
+import com.company.Enemy.EnemyInfo;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;

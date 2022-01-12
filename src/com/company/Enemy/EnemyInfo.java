@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Enemy;
 
 public class EnemyInfo {
     public String Name;

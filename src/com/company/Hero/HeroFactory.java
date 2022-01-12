@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Hero;
 
 public class HeroFactory{
 
