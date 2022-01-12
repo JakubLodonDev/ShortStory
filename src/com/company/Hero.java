@@ -6,7 +6,7 @@ import lombok.ToString;
 
 
 @ToString
-public class Hero {
+public abstract class Hero {
     private int InitialHealth;
 
     @Getter @Setter String Name;
@@ -15,7 +15,7 @@ public class Hero {
     @Getter @Setter int Damage;
     @Getter @Setter int Dodge;
 
-    public Hero(String name,int level, int health, int damage, int dodge) {
+    /*public Hero(String name,int level, int health, int damage, int dodge) {
         Name = name;
         Level = level;
         Health = health;
@@ -23,6 +23,12 @@ public class Hero {
         Dodge = dodge;
 
         InitialHealth = health;
+    }*/
+    void SaveStats(int gameLevel){
+        setLevel(gameLevel);
+        InitialHealth = getHealth();
+        setDamage(getDamage());
+        setDodge(getDodge());
     }
 
     public void HealToMaxHealth(){

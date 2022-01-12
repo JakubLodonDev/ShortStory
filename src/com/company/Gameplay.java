@@ -11,8 +11,10 @@ public class Gameplay {
         randomEnemyGetter= new RandomEnemyGetter();
     }
 
-    boolean Game(Hero hero) {
+    boolean StartGame(Hero hero, int gameLevel) {
         boolean levelResult = true;
+        hero.setLevel(gameLevel);
+        hero.SaveStats(gameLevel);
         //Hero hero = new Hero("Archer",0,150,30,15);
 
         int numberOfEnemys = GetNumberOfEnemies(hero);
@@ -24,8 +26,12 @@ public class Gameplay {
         boolean fightsresult = fightsOnLevel.Fights(currentEnemiesOnTheLevel,hero);
 
         if(fightsresult) {
-            System.out.printf("Win");
+            System.out.println("Win");
             hero.HealToMaxHealth();
+        }
+        else {
+            System.out.println("Loss");
+            System.out.println(hero.toString());
         }
 
         return levelResult;
@@ -34,7 +40,7 @@ public class Gameplay {
 
     private int GetNumberOfEnemies(Hero hero) {
         Random rand = new Random();
-        int numberOfEnemys = rand.nextInt(4+ hero.getLevel())+baseNumberOfEnemies;
+        int numberOfEnemys = rand.nextInt(3+ hero.getLevel())+baseNumberOfEnemies;
         return numberOfEnemys;
     }
 }

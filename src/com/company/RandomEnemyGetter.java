@@ -33,9 +33,9 @@ public class RandomEnemyGetter{
             case "Goblin":
                 return new Enemy("Goblin",0,50,10,2);
             case "Skeleton":
-                return new Enemy("Skeleton",0,45,15,2);
+                return new Enemy("Wolf",0,45,15,2);
             case "Bird":
-                return new Enemy("Bird",1,150,30,15);
+                return new Enemy("Assasyn",1,40,25,4);
             default:
                 throw new UnsupportedOperationException();
         }
