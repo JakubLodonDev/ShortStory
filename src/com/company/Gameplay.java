@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Enemy.Enemy;
+import com.company.Enemy.RandomEnemyGetter;
 import com.company.Hero.Hero;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Gameplay {
         randomEnemyGetter= new RandomEnemyGetter();
     }
 
-    boolean StartGame(Hero hero, int gameLevel) {
+    FightResult StartGame(Hero hero, int gameLevel) {
         boolean levelResult = true;
 
         int numberOfEnemies = GetNumberOfEnemies(hero);
@@ -22,10 +23,15 @@ public class Gameplay {
         ArrayList<Enemy>currentEnemiesOnTheLevel = randomEnemyGetter.Get(hero.getLevel(), numberOfEnemies);
 
         FightsOnLevel fightsOnLevel = new FightsOnLevel();
-        levelResult = fightsOnLevel.Fights(currentEnemiesOnTheLevel,hero);
+        FightResult fightResult = fightsOnLevel.Fight(currentEnemiesOnTheLevel,hero);
+        if(fightResult.LevelCompleted) {
+            fightResult.CourseOfTheBattles.add(new BattleHistory("Win"));
+        } else {
+            fightResult.CourseOfTheBattles.add(new BattleHistory("Loss"));
+        }
 
 
-        return levelResult;
+        return fightResult;
     }
 
     private int GetNumberOfEnemies(Hero hero) {

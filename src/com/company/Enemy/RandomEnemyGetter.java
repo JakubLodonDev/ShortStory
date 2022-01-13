@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Enemy;
 
 import com.company.Enemy.Enemy;
 import com.company.Enemy.EnemyInfo;
@@ -34,11 +34,11 @@ public class RandomEnemyGetter{
     private Enemy Create(String type){
         switch (type){
             case "Goblin":
-                return new Enemy("Goblin",0,50,10,2);
+                return new Goblin();
             case "Skeleton":
-                return new Enemy("Wolf",0,45,15,2);
+                return new Wolf();
             case "Bird":
-                return new Enemy("Assasyn",1,40,25,4);
+                return new Assassin();
             default:
                 throw new UnsupportedOperationException();
         }

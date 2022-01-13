@@ -6,29 +6,37 @@ import com.company.Hero.Hero;
 import java.util.ArrayList;
 
 public class FightsOnLevel {
-    public boolean Fights(ArrayList<Enemy> currentEnemiesOnTheLevel, Hero hero) {
-        boolean fightsresult = true;
+
+
+    public FightResult Fight(ArrayList<Enemy> currentEnemiesOnTheLevel, Hero hero) {
+        boolean fightCompleted = true;
+
+        ArrayList<BattleHistory> courseOfTheBattles = new ArrayList<>();
 
         for (Enemy enemy: currentEnemiesOnTheLevel) {
-            StartBattle(enemy ,hero);
+            StartBattle(enemy ,hero, courseOfTheBattles);
 
             if(hero.getHealth()<0){
-                fightsresult = false;
+                fightCompleted = false;
                 break;
             }
         }
-        return fightsresult;
+        FightResult fightResult = new FightResult(fightCompleted, courseOfTheBattles);
+
+
+        return fightResult;
     }
 
-    private void StartBattle(Enemy enemy, Hero hero) {
+
+    public ArrayList<BattleHistory> StartBattle(Enemy enemy, Hero hero, ArrayList<BattleHistory> courseOfTheBattles) {
         var battleNotFinished = true;
 
         while (battleNotFinished) {
             if(!hero.TryDodge()) {
                 hero.setHealth(hero.getHealth()-enemy.getDamage());
-                System.out.println("Enemy dealt "+enemy.getDamage()+" damage | " +hero.getName()+" have "+ hero.getHealth()+" HP");
+                courseOfTheBattles.add(new BattleHistory("Enemy dealt "+enemy.getDamage()+" damage | " +hero.getName()+" have "+ hero.getHealth()+" HP"));
             } else {
-                System.out.println(hero.getName()+" DODGE!!!!!");
+                courseOfTheBattles.add(new BattleHistory(hero.getName()+" DODGE!!!!!"));
             }
 
 
@@ -38,9 +46,9 @@ public class FightsOnLevel {
             else{
                 if(!enemy.TryDodge()) {
                     enemy.setHealth(enemy.getHealth()-hero.getDamage());
-                    System.out.println("Hero dealt "+hero.getDamage()+" damage | " +enemy.getName()+" have "+ enemy.getHealth()+" HP");
+                    courseOfTheBattles.add(new BattleHistory("Hero dealt "+hero.getDamage()+" damage | " +enemy.getName()+" have "+ enemy.getHealth()+" HP"));
                 } else {
-                    System.out.println(enemy.getName()+" DODGE!!!!!");
+                    courseOfTheBattles.add(new BattleHistory(enemy.getName()+" DODGE!!!!!"));
                 }
 
                 if(enemy.getHealth()<0) {
@@ -48,7 +56,8 @@ public class FightsOnLevel {
                 }
             }
         }
-        System.out.println("--------------------------------");
+        courseOfTheBattles.add(new BattleHistory("--------------------------------"));
+        return courseOfTheBattles;
     }
 
 

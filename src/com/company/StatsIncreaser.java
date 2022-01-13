@@ -2,12 +2,12 @@ package com.company;
 
 import com.company.Hero.Hero;
 
-public class StatsIncrease {
+public class StatsIncreaser {
     private final int baseIncreaseHp = 15;
     private final int baseIncreaseDmg = 5;
     private final int baseIncreaseDodge = 2;
 
-    public StatsIncrease() {
+    public StatsIncreaser() {
     }
 
     public boolean StatsUp(Hero hero, String increaseOneStat){

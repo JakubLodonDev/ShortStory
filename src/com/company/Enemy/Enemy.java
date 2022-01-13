@@ -7,7 +7,7 @@ import java.util.Random;
 
 @Getter
 @Setter
-public class Enemy {
+public abstract class Enemy {
     String Name;
     int Level;
     int Health;

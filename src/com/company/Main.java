@@ -6,37 +6,39 @@ import com.company.Hero.HeroFactory;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         HeroFactory heroFactory = new HeroFactory();
-        String chosseHero = scanner.next();
-        Hero hero = heroFactory.createHero(chosseHero.toLowerCase());
+        String chooseHero = scanner.next();
+        Hero hero = heroFactory.createHero(chooseHero.toLowerCase());
 
         Gameplay gameplay = new Gameplay();
-        StatsIncrease statsIncrease = new StatsIncrease();
+        StatsIncreaser statsIncreaser = new StatsIncreaser();
         int gameLevel = 0;
 
-        var levelCompleted = true;
+        FightResult fightResult = new FightResult(true);
 
-        while(levelCompleted) {
-            levelCompleted = gameplay.StartGame(hero, gameLevel);
 
-            if(levelCompleted){
-                System.out.println("Win");
+        while(fightResult.LevelCompleted) {
+            fightResult = gameplay.StartGame(hero, gameLevel);
+
+            if(fightResult.LevelCompleted){
                 boolean levelUpStats = false;
+
+                for (BattleHistory battleHistory : fightResult.CourseOfTheBattles) {
+                    System.out.println(battleHistory.Action);
+                }
+
                 hero.UpLevel();
 
                 while (!levelUpStats){
                     String increaseOneStat = scanner.next();
-                    levelUpStats = statsIncrease.StatsUp(hero, increaseOneStat);
+                    levelUpStats = statsIncreaser.StatsUp(hero, increaseOneStat);
                     gameLevel++;
                 }
 
                 hero.HealToMaxHealth();
-            } else {
-                System.out.println("Loss");
             }
 
             System.out.println(hero.toString());
