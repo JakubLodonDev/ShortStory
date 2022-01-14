@@ -19,25 +19,27 @@ public class Main {
 
         FightResult fightResult = new FightResult(true);
 
-
         while(fightResult.LevelCompleted) {
-            fightResult = gameplay.StartGame(hero, gameLevel);
+            var levelBeforeFight = hero.getLevel();
+            fightResult = gameplay.StartGame(hero);
 
             if(fightResult.LevelCompleted){
                 boolean levelUpStats = false;
 
-                for (BattleHistory battleHistory : fightResult.CourseOfTheBattles) {
+                for (BattleHistory battleHistory : fightResult.GetReadOnlyHistory()) {
                     System.out.println(battleHistory.Action);
                 }
 
-                hero.UpLevel();
+                var numberOfStatsUp = hero.getLevel() - levelBeforeFight;
 
-                while (!levelUpStats){
+                while (!levelUpStats || numberOfStatsUp != 0){
                     String increaseOneStat = scanner.next();
                     levelUpStats = statsIncreaser.StatsUp(hero, increaseOneStat);
-                    gameLevel++;
+                    if(levelUpStats) {
+                        numberOfStatsUp--;
+                        gameLevel++;
+                    }
                 }
-
                 hero.HealToMaxHealth();
             }
 

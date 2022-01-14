@@ -13,15 +13,17 @@ public abstract class Enemy {
     int Health;
     int Damage;
     int ChanceToDodge;
+    int ExperienceForKill;
 
     private final int MaxPercentToDodge = 100;
 
-    public Enemy(String name, int level, int health, int damage, int chanceToDodge) {
+    public Enemy(String name, int level, int health, int damage, int chanceToDodge, int experienceForKill) {
         Name = name;
         Level = level;
         Health = health;
         Damage = damage;
         ChanceToDodge = chanceToDodge;
+        ExperienceForKill = experienceForKill;
     }
 
     public boolean TryDodge() {

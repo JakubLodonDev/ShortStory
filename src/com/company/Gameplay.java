@@ -15,28 +15,25 @@ public class Gameplay {
         randomEnemyGetter= new RandomEnemyGetter();
     }
 
-    FightResult StartGame(Hero hero, int gameLevel) {
-        boolean levelResult = true;
-
+    FightResult StartGame(Hero hero) {
         int numberOfEnemies = GetNumberOfEnemies(hero);
 
         ArrayList<Enemy>currentEnemiesOnTheLevel = randomEnemyGetter.Get(hero.getLevel(), numberOfEnemies);
 
         FightsOnLevel fightsOnLevel = new FightsOnLevel();
         FightResult fightResult = fightsOnLevel.Fight(currentEnemiesOnTheLevel,hero);
-        if(fightResult.LevelCompleted) {
-            fightResult.CourseOfTheBattles.add(new BattleHistory("Win"));
-        } else {
-            fightResult.CourseOfTheBattles.add(new BattleHistory("Loss"));
-        }
 
+        if(fightResult.LevelCompleted) {
+            fightResult.AddHistory(new BattleHistory("Win")); //fajniej opisz
+        } else {
+            fightResult.AddHistory(new BattleHistory("Loss"));
+        }
 
         return fightResult;
     }
 
     private int GetNumberOfEnemies(Hero hero) {
         Random rand = new Random();
-        int numberOfEnemys = rand.nextInt(3+ hero.getLevel())+baseNumberOfEnemies;
-        return numberOfEnemys;
+        return rand.nextInt(3+ hero.getLevel())+baseNumberOfEnemies;
     }
 }

@@ -1,5 +1,6 @@
 package com.company.Hero;
 
+import com.company.Enemy.Enemy;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,21 +15,22 @@ public abstract class Hero {
     @Getter @Setter int Health;
     @Getter @Setter int Damage;
     @Getter int ChanceToDodge;
+    @Getter @Setter int Experience;
+
+    private int LevelMultiplier = 1;
+    private int BaseNumberOfLevelUp = 100;
 
     private final int MaxPercentToDodge = 100;
 
-    public Hero(String name,int level, int health, int damage, int chanceToDodge) {
+    public Hero(String name,int level, int health, int damage, int chanceToDodge, int experience) {
         Name = name;
         Level = level;
         Health = health;
         Damage = damage;
         ChanceToDodge = chanceToDodge;
+        Experience = experience;
 
         InitialHealth = health;
-    }
-
-    public void UpLevel() {
-        Level++;
     }
 
     public void HealToMaxHealth(){
@@ -56,7 +58,26 @@ public abstract class Hero {
         return true;
     }
 
+    public void AddExperience(int experience) {
+        Experience = Experience + experience;
+        if(EnoughToLevelUp()){
+            Experience = Experience-BaseNumberOfLevelUp*LevelMultiplier;
+            LevelMultiplier++;
+            Level++;
+            HealToMaxHealth();
+        }
+    }
+
+    private boolean EnoughToLevelUp() {
+        if(Experience>=BaseNumberOfLevelUp*LevelMultiplier){
+            return true;
+        }
+        return false;
+    }
+
     public String toString() {
-        return "Hero(InitialHealth=" + this.InitialHealth + ", Name=" + this.Name + ", Level=" + this.Level + ", Health=" + this.Health + ", Damage=" + this.Damage + ", ChanceToDodge=" + this.ChanceToDodge + ")";
+        return "Hero(InitialHealth=" + this.InitialHealth + ", Name=" + this.Name
+                + ", Level=" + this.Level + ", Health=" + this.Health + ", Damage="
+                + this.Damage + ", ChanceToDodge=" + this.ChanceToDodge + ", Experience=" + this.Experience + ")";
     }
 }
