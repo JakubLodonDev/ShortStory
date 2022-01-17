@@ -7,11 +7,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner typeSomething = new Scanner(System.in);
+
+        Hero hero;
 
         HeroFactory heroFactory = new HeroFactory();
-        String chooseHero = scanner.next();
-        Hero hero = heroFactory.createHero(chooseHero.toLowerCase());
+        System.out.println("Chosse your hero:\nWarrior: 200 HP, 20 DMG, 0 DODGE\n" +
+                "Archer: 150 HP, 30 DMG, 15 DODGE\nNinja: 100 HP, 40 DMG, 30 DODGE");
+        do {
+            String chooseHero = typeSomething.next();
+            hero = heroFactory.createHero(chooseHero.toLowerCase());
+        }while (hero==null);
+
 
         Gameplay gameplay = new Gameplay();
         StatsIncreaser statsIncreaser = new StatsIncreaser();
@@ -21,7 +28,7 @@ public class Main {
 
         while(fightResult.LevelCompleted) {
             var levelBeforeFight = hero.getLevel();
-            fightResult = gameplay.StartGame(hero);
+            fightResult = gameplay.StartGame(hero, gameLevel);
 
             if(fightResult.LevelCompleted){
                 boolean levelUpStats = false;
@@ -33,7 +40,7 @@ public class Main {
                 var numberOfStatsUp = hero.getLevel() - levelBeforeFight;
 
                 while (!levelUpStats || numberOfStatsUp != 0){
-                    String increaseOneStat = scanner.next();
+                    String increaseOneStat = typeSomething.next();
                     levelUpStats = statsIncreaser.StatsUp(hero, increaseOneStat);
                     if(levelUpStats) {
                         numberOfStatsUp--;

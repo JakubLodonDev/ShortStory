@@ -15,7 +15,7 @@ public class Gameplay {
         randomEnemyGetter= new RandomEnemyGetter();
     }
 
-    FightResult StartGame(Hero hero) {
+    FightResult StartGame(Hero hero, int gameLevel) {
         int numberOfEnemies = GetNumberOfEnemies(hero);
 
         ArrayList<Enemy>currentEnemiesOnTheLevel = randomEnemyGetter.Get(hero.getLevel(), numberOfEnemies);
@@ -24,9 +24,9 @@ public class Gameplay {
         FightResult fightResult = fightsOnLevel.Fight(currentEnemiesOnTheLevel,hero);
 
         if(fightResult.LevelCompleted) {
-            fightResult.AddHistory(new BattleHistory("Win")); //fajniej opisz
+            fightResult.AddHistory(new BattleHistory("Congratulations, you climbed the floor " + gameLevel));
         } else {
-            fightResult.AddHistory(new BattleHistory("Loss"));
+            fightResult.AddHistory(new BattleHistory("You have been defeated, start over and maybe you will succeed"));
         }
 
         return fightResult;
