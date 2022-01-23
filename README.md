@@ -19,7 +19,7 @@ aby zwiększyć swoje statystyki i wyrusza na następne pietro. Z coraz wyższym
           <li>Atak – Określa ile obrażeń może nałożyć postać na przeciwnika.</li>
           <li>Unik – Daje możliwość postaci na uniknięcie obrażeń.</li>
           <li>Doświadczenie-Punkty doświadczenia za zabitych przeciwników</li>
-        <ol>
+        </ol>
       <li>Postacie(klasy) posiadają takie statystyki jak:</li>
       <li>Gracz rozpoczyna z poziomem 0</li>
    </ul>
