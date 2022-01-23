@@ -12,6 +12,14 @@ aby zwiększyć swoje statystyki i wyrusza na następne pietro. Z coraz wyższym
   <li>Postacie:
     <ul>
       <li>Do wyboru są 3 typy postaci (wojownik, łucznik, ninja)</li>
+        <ol>
+          <li>Rodzaj – Nazwa klasy postaci.</li>
+          <li>Poziom – Identyfikuje gracza o poziomie doświadczenia postaci.</li>
+          <li>Zdrowie – Określa ile może dostać obrażeń od przeciwnika.</li>
+          <li>Atak – Określa ile obrażeń może nałożyć postać na przeciwnika.</li>
+          <li>Unik – Daje możliwość postaci na uniknięcie obrażeń.</li>
+          <li>Doświadczenie-Punkty doświadczenia za zabitych przeciwników</li>
+        <ol>
       <li>Postacie(klasy) posiadają takie statystyki jak:</li>
       <li>Gracz rozpoczyna z poziomem 0</li>
    </ul>
