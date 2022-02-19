@@ -30,26 +30,28 @@ public class Main {
             var levelBeforeFight = hero.getLevel();
             fightResult = gameplay.StartGame(hero, gameLevel);
 
-            if(fightResult.LevelCompleted){
-                boolean levelUpStats = false;
+            for (BattleHistory battleHistory : fightResult.GetReadOnlyHistory()) {
+                System.out.println(battleHistory.Action);
+            }
 
-                for (BattleHistory battleHistory : fightResult.GetReadOnlyHistory()) {
-                    System.out.println(battleHistory.Action);
-                }
+            if(fightResult.LevelCompleted) {
+                boolean levelUpStats = false;
+                gameLevel++;
 
                 var numberOfStatsUp = hero.getLevel() - levelBeforeFight;
 
-                while (!levelUpStats || numberOfStatsUp != 0){
+                while (numberOfStatsUp > 0){
+                    System.out.println("U can increas your stats type:\nhp +15\ndmg +5\ndodge +2");
+
                     String increaseOneStat = typeSomething.next();
                     levelUpStats = statsIncreaser.StatsUp(hero, increaseOneStat);
                     if(levelUpStats) {
                         numberOfStatsUp--;
-                        gameLevel++;
                     }
+
                 }
                 hero.HealToMaxHealth();
             }
-
             System.out.println(hero.toString());
         }
     }

@@ -12,10 +12,19 @@ public class Gameplay {
     RandomEnemyGetter randomEnemyGetter;
 
     public Gameplay() {
-        randomEnemyGetter= new RandomEnemyGetter();
+        randomEnemyGetter = new RandomEnemyGetter();
     }
 
+
     FightResult StartGame(Hero hero, int gameLevel) {
+        if(hero == null){
+            throw new NullPointerException("Parameter 'hero' cannot be null");
+        }
+
+        if(gameLevel < 0){
+            throw new IllegalArgumentException("Parameter 'gameLevel' cannot be < 0");
+        }
+
         int numberOfEnemies = GetNumberOfEnemies(hero);
 
         ArrayList<Enemy>currentEnemiesOnTheLevel = randomEnemyGetter.Get(hero.getLevel(), numberOfEnemies);

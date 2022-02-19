@@ -10,7 +10,7 @@ public class HeroFactory{
         } else if (type.equals("warrior")) {
             hero = new Warrior();
         }else if (type.equals("ninja")) {
-            hero = new Warrior();
+            hero = new Ninja();
         } else {
             return null;
         }
